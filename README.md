@@ -1,4 +1,4 @@
-# TSL WALL [ FRONT END ]
+# TSL WALL | FRONT-END
 
 The Silver Logic Interview Assignment
 
