@@ -55,7 +55,7 @@ const MenuOptions = ({ getProfile, options }) => {
           <>
             <div
               key={button.path}
-              style={pathAndButtonMatch(button.title) && { color: "#1976d2" }}
+              style={{ color: pathAndButtonMatch(button.title) && "#1976d2" }}
               className={classes.menuButtons}
               onClick={() => changePage(button.path)}
             >

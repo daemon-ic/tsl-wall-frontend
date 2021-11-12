@@ -74,7 +74,16 @@ const HomePostDisplay = ({ posts, goToUser }) => {
               </div>
             </div>
 
-            <div style={{ marginTop: "10px" }}>{post.postMessage}</div>
+            <div
+              style={{
+                marginTop: "10px",
+                display: "flex",
+                flexWrap: "wrap",
+                wordBreak: "break-all",
+              }}
+            >
+              {post.postMessage}
+            </div>
           </div>
         </Paper>
       ))}

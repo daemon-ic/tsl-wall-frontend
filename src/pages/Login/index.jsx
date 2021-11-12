@@ -57,9 +57,7 @@ const LoginPage = () => {
 
       if (response !== "OK") throw new Error("Not able to sign up");
 
-      setView(VIEWS.LOGIN);
-      inputCleanup();
-      alert("Account Created!");
+      await onLogin();
     } catch (e) {
       inputCleanup();
       alert("There was an error. " + e.message + " Please try again.");

@@ -1,9 +1,7 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import HomePage from "../pages/Home";
-import LandingPage from "../pages/Landing";
 import LoginPage from "../pages/Login";
-import ProfilePage from "../pages/Profile";
 import PrimarySearchAppBar from "./NavBar";
 
 const LoggedInRoutes = () => (
