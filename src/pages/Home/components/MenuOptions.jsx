@@ -19,27 +19,23 @@ const MenuOptions = ({ getProfile, options }) => {
   const history = useHistory();
   const { user, setUser } = useUserContext();
 
-  const changePage = async (path, id) => {
-    if (path === "/logout") {
-      console.log("LOGOUT FIRED");
-      await axiosLogout();
-      setUser(null);
-      history.push("/");
-      return;
+  const changePage = async (path) => {
+    switch (path) {
+      case "/logout":
+        console.log("LOGOUT FIRED");
+        await axiosLogout();
+        setUser(null);
+        history.push("/");
+        break;
+      case "/profile":
+        history.push(path + "/" + user.username);
+        if (getProfile) getProfile(user.username);
+        break;
+      default:
+        history.push(path);
+        break;
     }
-
-    if (path === "/profile") {
-      history.push(path + "/" + user.username);
-      if (getProfile) getProfile(user.username);
-      return;
-    }
-
-    if (path === null) return;
-
-    history.push(path);
   };
-
-  pathAndButtonMatch("Profile");
 
   return (
     <Paper
@@ -58,10 +54,8 @@ const MenuOptions = ({ getProfile, options }) => {
         {options.map((button, index) => (
           <>
             <div
-              key={index}
-              style={
-                pathAndButtonMatch(button.title) ? { color: "#1976d2" } : null
-              }
+              key={button.path}
+              style={pathAndButtonMatch(button.title) && { color: "#1976d2" }}
               className={classes.menuButtons}
               onClick={() => changePage(button.path)}
             >
@@ -70,7 +64,7 @@ const MenuOptions = ({ getProfile, options }) => {
               </div>
               <h3 className={classes.menuText}>{button.title}</h3>
             </div>
-            {index !== options.length - 1 ? <Divider /> : null}
+            {index !== options.length - 1 && <Divider />}
           </>
         ))}
       </div>

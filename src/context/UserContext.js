@@ -11,18 +11,17 @@ const UserContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   const redirectToHome = () => {
-    if (window.location.pathname === "/") {
-      window.location.href = "/home";
-    }
+    window.location.href = "/home";
   };
 
   const loadUserData = async () => {
     try {
       const currentUser = await axiosGetUser();
-      console.log("CURRENT USER: ", currentUser);
-      setUser(currentUser);
       if (!currentUser) return;
-      redirectToHome();
+      setUser(currentUser);
+      if (window.location.pathname === "/") {
+        redirectToHome();
+      }
     } catch (error) {
       console.log("GETTING USER FAILED", error);
     }

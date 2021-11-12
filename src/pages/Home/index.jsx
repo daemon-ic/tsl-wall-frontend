@@ -36,16 +36,24 @@ const HomePage = () => {
   }, []);
 
   const getProfilePosts = async (username) => {
-    let postsResult = await axiosGetOthersPosts({ username: username });
-    postsResult = postsResult.sort(
-      (a, b) => Number(b.timestamp) - Number(a.timestamp)
-    );
-    setProfilePosts(postsResult);
+    try {
+      let postsResult = await axiosGetOthersPosts({ username: username });
+      postsResult = postsResult.sort(
+        (a, b) => Number(b.timestamp) - Number(a.timestamp)
+      );
+      setProfilePosts(postsResult);
+    } catch (e) {
+      alert("There was an error getting posts: " + e.message);
+    }
   };
 
   const getProfileData = async (username) => {
-    let userResult = await axiosGetProfile({ username: username });
-    setProfile(userResult);
+    try {
+      const userResult = await axiosGetProfile({ username: username });
+      setProfile(userResult);
+    } catch (e) {
+      alert("There was an error getting profile data: " + e.message);
+    }
   };
 
   const makePost = async () => {

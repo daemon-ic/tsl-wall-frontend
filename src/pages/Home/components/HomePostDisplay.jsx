@@ -6,7 +6,7 @@ const HomePostDisplay = ({ posts, goToUser }) => {
     <>
       {posts.map((post, index) => (
         <Paper
-          key={index}
+          key={post.id}
           elevation={0}
           style={{
             display: "flex",
@@ -53,7 +53,7 @@ const HomePostDisplay = ({ posts, goToUser }) => {
                     cursor: "pointer",
                   }}
                 >
-                  {post.name && post.name[0].toUpperCase()}
+                  {post.name && post.name[0] && post.name[0].toUpperCase()}
                 </div>
                 <div
                   style={{

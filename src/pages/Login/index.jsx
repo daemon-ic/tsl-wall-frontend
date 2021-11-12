@@ -30,24 +30,18 @@ const LoginPage = () => {
   const [view, setView] = useState(VIEWS.LOGIN);
 
   const onLogin = async () => {
-    console.log("LOGIN PRESSED");
     try {
-      console.log("USER", usernameInput.value);
-      console.log("PASS", passwordInput.value);
       const response = await axiosLogin({
         username: usernameInput.value,
         password: passwordInput.value,
       });
-      console.log("RESPONSE: ", response);
 
-      if (response === "OK") {
-        history.push("/home");
-        inputCleanup();
-        window.location.reload();
-        return;
-      }
+      if (response !== "OK") throw new Error("Login not successfull");
+
+      window.location.href = "/home";
     } catch (e) {
-      inputCleanup("ERROR");
+      inputCleanup();
+      alert("There was an error: " + e.message + " Please try again.");
     }
   };
 
@@ -60,15 +54,15 @@ const LoginPage = () => {
         password: passwordInput.value,
         hex: random(HEX),
       });
-      if (response === "OK") {
-        setView(VIEWS.LOGIN);
-        inputCleanup();
-        alert("Account Created!");
-        return;
-      }
+
+      if (response !== "OK") throw new Error("Not able to sign up");
+
+      setView(VIEWS.LOGIN);
       inputCleanup();
+      alert("Account Created!");
     } catch (e) {
-      inputCleanup("ERROR");
+      inputCleanup();
+      alert("There was an error. " + e.message + " Please try again.");
     }
   };
 
@@ -80,12 +74,11 @@ const LoginPage = () => {
     setView(CORRESPONDING_VIEWS[view]);
   };
 
-  const inputCleanup = (error) => {
+  const inputCleanup = () => {
     nameInput.clear();
     usernameInput.clear();
     emailInput.clear();
     passwordInput.clear();
-    if (error) alert("There was an error. Please try again.");
   };
 
   return (

@@ -42,13 +42,6 @@ const InputForms = ({
         {...passwordInput}
       />
 
-      {/* {view === VIEWS.SIGNUP && (
-        <p style={{}}>
-          By signing up, you agree to the Terms of Service and Privacy Policy,
-          including Cookie Use.
-        </p>
-      )} */}
-
       {view === VIEWS.LOGIN ? (
         <>
           <Button onClick={onLogin}>Login</Button>

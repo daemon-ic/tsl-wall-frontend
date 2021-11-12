@@ -1,7 +1,6 @@
 import { Paper } from "@mui/material";
 
 const ProfileBio = ({ profile }) => {
-  console.log("profile bio profile", profile);
   return (
     <Paper
       elevation={0}
@@ -40,7 +39,7 @@ const ProfileBio = ({ profile }) => {
             marginBottom: "15px",
           }}
         >
-          {profile.name && profile.name[0].toUpperCase()}
+          {profile.name && profile.name[0] && profile.name[0].toUpperCase()}
         </div>
         <h3 style={{ fontSize: "20px" }}>{profile.name}</h3>
         <h3 style={{ color: "grey" }}>@{profile.username}</h3>
